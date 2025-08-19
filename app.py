@@ -131,4 +131,11 @@ schedule.every().day.at("20:45").do(post_fii_dii)
 while True:
     schedule.run_pending()
     time.sleep(30)
-    
+# Reset news counter every midnight
+def reset_daily_limit():
+    global news_count
+    news_count = 0
+    print("🔄 News counter reset for new day")
+
+schedule.every().day.at("00:01").do(reset_daily_limit)
+
