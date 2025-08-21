@@ -1,11 +1,7 @@
-flask==3.0.3
-gunicorn==22.0.0
 python-telegram-bot==13.15
+APScheduler==3.6.3
+Flask==3.0.3
 requests==2.31.0
-schedule==1.2.2
 feedparser==6.0.11
-sgmllib3k==1.0.0
-python-dotenv==1.0.1
 pytz==2024.1
-python-telegram-bot==13.15
-urllib3==1.26.16
+tzlocal==5.3.1
