@@ -1,22 +1,18 @@
-# imghdr.py - custom replacement for deprecated Python stdlib
-
-import os
+# Minimal imghdr shim (Python 3.13+)
+# Provides imghdr.what(file, h=None) for jpg/png/gif/webp
+import io
 
 def what(file, h=None):
     if h is None:
-        if not os.path.isfile(file):
-            return None
-        with open(file, 'rb') as f:
-            h = f.read(32)
-
-    if h.startswith(b'\211PNG\r\n\032\n'):
-        return 'png'
-    if h.startswith(b'\377\330'):
-        return 'jpeg'
-    if h[6:10] in (b'JFIF', b'Exif'):
-        return 'jpeg'
-    if h.startswith((b'GIF87a', b'GIF89a')):
-        return 'gif'
-    if h.startswith(b'BM'):
-        return 'bmp'
+        with open(file, "rb") as f:
+            h = f.read(16)
+    if h.startswith(b"\xff\xd8"):
+        return "jpeg"
+    if h.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "png"
+    if h.startswith(b"GIF87a") or h.startswith(b"GIF89a"):
+        return "gif"
+    if h[:4] == b"RIFF" and h[8:12] == b"WEBP":
+        return "webp"
     return None
+    
