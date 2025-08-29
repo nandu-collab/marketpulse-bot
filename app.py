@@ -1,31 +1,26 @@
-from flask import Flask
-from apscheduler.schedulers.background import BackgroundScheduler
-import pytz
-import logging
-
-# Telegram + News imports here
-# from telegram.ext import Updater
-# from your_functions import fetch_and_post_news
-
+# =========================
+# Flask (to satisfy Render Web Service)
+# =========================
 app = Flask(__name__)
 
-# Logging (important to debug)
-logging.basicConfig(level=logging.INFO)
-
-# Global scheduler
-scheduler = BackgroundScheduler(timezone=pytz.timezone("Asia/Kolkata"))
-
-def start_jobs():
-    # Avoid duplicate jobs
-    if not scheduler.running:
-        # Example job (you will add all your news jobs here)
-        scheduler.add_job(fetch_and_post_news, "interval", minutes=30)
-        scheduler.start()
-        logging.info("✅ Scheduler started with all jobs")
-
 @app.route("/")
-def home():
-    return "Bot is live"
+def index():
+    return "OK", 200
 
-# Run scheduler immediately when app starts (important for Render)
-start_jobs()
+def announce_start():
+    send_message(
+        "✅ MarketPulse bot restarted and schedule loaded.\n"
+        "Window: 08:30–21:30 • Every 30 min (2 posts/slot)\n"
+        "Weekdays: 09:00 Pre-market • 10:30/11:00 IPO • 15:45 Post-market • 21:00 FII/DII"
+    )
+
+def start_scheduler_once():
+    """Ensure scheduler starts only once (even with Gunicorn workers)."""
+    if not sched.running:
+        schedule_jobs()
+        sched.start()
+        log.info("Scheduler started.")
+        announce_start()
+
+# Start scheduler immediately when app is imported (not only __main__)
+start_scheduler_once()
