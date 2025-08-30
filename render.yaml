@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: share-market-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TARGET_CHANNEL_ID
+        sync: false
+      - key: TIMEZONE
+        value: Asia/Kolkata
+        
