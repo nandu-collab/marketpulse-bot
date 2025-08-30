@@ -4,7 +4,8 @@ import pytz
 import schedule
 import time
 from datetime import datetime
-from telegram import Bot, ParseMode
+from telegram import Bot
+from telegram.constants import ParseMode
 from telegram.error import TelegramError
 from fetch_news import get_market_news, get_pre_market_brief, get_post_market_brief, get_fii_dii_data, get_ipo_updates
 
