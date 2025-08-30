@@ -1,4 +1,4 @@
-# Minimal shim for Python 3.13 where stdlib 'imghdr' was removed.
+# imghdr.py shim for python-telegram-bot
 def what(file, h=None):
     return None
     
