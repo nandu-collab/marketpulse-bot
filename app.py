@@ -7,7 +7,11 @@ from datetime import datetime
 from telegram import Bot
 from telegram.constants import ParseMode
 from telegram.error import TelegramError
-from fetch_news import get_market_news, get_pre_market_brief, get_post_market_brief, get_fii_dii_data, get_ipo_updates
+
+def get_news():
+    return [
+        {"headline": "Sample Market Update", "summary": "Sensex up by 350 points.", "link": "https://example.com/news"}
+    ]
 
 # Logging
 logging.basicConfig(level=logging.INFO)
