@@ -196,4 +196,5 @@ def fetch_ipo_gmp():
         return []
     ipos = []
     for tr in table.find_all("tr")[1:]:
-        tds = [clean_text(td.get_text()) for
+        tds = [clean_text(td.get_text()) for td in row.find_all("td")]
+
