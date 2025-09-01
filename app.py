@@ -43,7 +43,7 @@ else:
 # ========= Globals =========
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
 app = Flask(__name__)
-app = FastAPI()
+app = FastAPI(__name__)
 bot = Bot(token=BOT_TOKEN) if BOT_TOKEN else None
 sched = BackgroundScheduler(timezone=TIMEZONE)
 
