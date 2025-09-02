@@ -19,6 +19,14 @@ import atexit
 import requests
 import feedparser
 from bs4 import BeautifulSoup
+from pytz import timezone
+
+IST = timezone("Asia/Kolkata")
+
+scheduler.add_job(fetch_and_post_news, "cron",
+                  hour="9,12,15,18,21",
+                  minute=0,
+                  timezone=IST)
 
 from flask import Flask, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -77,14 +85,6 @@ log = logging.getLogger("marketpulse")
 app  = Flask(__name__)
 bot  = Bot(token=BOT_TOKEN) if BOT_TOKEN else None
 sched = BackgroundScheduler(timezone=TIMEZONE)
-from pytz import timezone
-
-IST = timezone("Asia/Kolkata")
-
-scheduler.add_job(fetch_and_post_news, "cron",
-                  hour="9,12,15,18,21",
-                  minute=0,
-                  timezone=IST)
 
 posted_urls_today: set[str] = set()
 news_count_today: int      = 0
