@@ -24,7 +24,7 @@ CHANNEL_ID_RAW       = env("CHANNEL_ID")  # "-100..." or "@yourchannel"
 TIMEZONE_NAME        = env("TIMEZONE", "Asia/Kolkata")
 
 ENABLE_NEWS          = env("ENABLE_NEWS", "1") == "1"
-NEWS_INTERVAL        = int(env("NEWS_INTERVAL", "45"))        # minutes; default 60 as you set
+NEWS_INTERVAL        = int(env("NEWS_INTERVAL", "30"))        # minutes; default 60 as you set
 MAX_NEWS_PER_SLOT    = int(env("MAX_NEWS_PER_SLOT", "2"))
 NEWS_SUMMARY_CHARS   = int(env("NEWS_SUMMARY_CHARS", "550"))
 
