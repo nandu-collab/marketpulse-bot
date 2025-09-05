@@ -345,4 +345,4 @@ def post_ipo_snapshot():
     lines = ["📌 <b>IPO — Ongoing Today</b>"]
     for x in ipos[:6]:
         seg = f"<b>{x['company']}</b> • Open {x['open']} – Close {x['close']}"
-        if x['band']: seg += f"
+        if x['band']: seg += f"{x['band']}"
