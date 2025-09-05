@@ -10,7 +10,10 @@ import feedparser
 from bs4 import BeautifulSoup
 
 from flask import Flask, jsonify
-
+@app.route("/")
+def home():
+    return "Bot is running ✅", 200
+    
 # --- Telegram (PTB 13.x) ---
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
@@ -54,9 +57,6 @@ log = logging.getLogger("marketpulse")
 
 bot = Bot(token=BOT_TOKEN)
 app = Flask(__name__)
-@app.route("/")
-def home():
-    return "Bot is running ✅", 200
 
 # ========== DEDUPE ==========
 SEEN_FILE = "/tmp/mpulse_seen.json"
