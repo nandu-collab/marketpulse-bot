@@ -10,6 +10,7 @@ import feedparser
 from bs4 import BeautifulSoup
 
 from flask import Flask, jsonify
+app = Flask(__name__)
 @app.route("/")
 def home():
     return "Bot is running ✅", 200
@@ -56,7 +57,6 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("marketpulse")
 
 bot = Bot(token=BOT_TOKEN)
-app = Flask(__name__)
 
 # ========== DEDUPE ==========
 SEEN_FILE = "/tmp/mpulse_seen.json"
