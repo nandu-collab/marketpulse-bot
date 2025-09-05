@@ -54,6 +54,9 @@ log = logging.getLogger("marketpulse")
 
 bot = Bot(token=BOT_TOKEN)
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return "Bot is running ✅", 200
 
 # ========== DEDUPE ==========
 SEEN_FILE = "/tmp/mpulse_seen.json"
