@@ -346,7 +346,7 @@ def post_ipo_snapshot():
         return
     ipos = fetch_ongoing_ipos_for_today()
     if not ipos:
-        send_text("📌 <b>IPO</b>\nNo clear IPO details available today.")
+        send_text("📌 <b>IPO</b>\nNo Mainboard IPOs open for subscription today")
         return
     lines = ["📌 <b>IPO — Ongoing Today</b>"]
     for x in ipos[:6]:
