@@ -10,4 +10,3 @@ pandas==2.0.3
 lxml==4.9.3
 gunicorn==21.2.0
 urllib3==1.26.15
-lxml==4.9.3
