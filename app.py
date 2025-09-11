@@ -518,12 +518,18 @@ def fetch_fii_dii_moneycontrol():
         flat = " | ".join(rows[0])
         m = re.findall(r"Net\s*:?[\s₹]*([-+]?\d[\d,]*)", flat)
         if len(m) >= 2:
-            try:
-                return {"fii": int(m[0].replace(",", "")), "dii": int(m[1].replace(",", ""))}
-            except Exception:
-                return None
-        nums = re.findall(r"[-+]?\d[\d,]*", flat)
-        if len(nums) >= 2:
-            try:
-                return {"fii": int(nums[-2].replace(",", "")), "dii": int(nums[-1].replace(",", ""))}
+    try:
+        return {"fii": int(m[0].replace(",", "")), "dii": int(m[1].replace(",", ""))}
+    except Exception:
+        return None
+
+nums = re.findall(r"[-+]?\d[\d,]*", flat)
+if len(nums) >= 2:
+    try:
+        return {"fii": int(nums[-2].replace(",", "")), "dii": int(nums[-1].replace(",", ""))}
+    except Exception:
+        return None
+
+return None
+
  
