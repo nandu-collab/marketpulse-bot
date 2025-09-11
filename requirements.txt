@@ -1,3 +1,4 @@
+--only-binary=:all:
 python-telegram-bot==13.15
 APScheduler==3.6.3
 Flask==3.0.3
