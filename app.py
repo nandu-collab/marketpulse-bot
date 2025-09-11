@@ -1,4 +1,13 @@
 # app.py
+import sys
+import types
+
+# Shim for deprecated 'cgi' module (removed in Python 3.13)
+if "cgi" not in sys.modules:
+    cgi = types.ModuleType("cgi")
+    cgi.parse_header = lambda s: (s, {})
+    sys.modules["cgi"] = cgi
+    
 import os, json, re, time, logging, threading
 from datetime import datetime, date
 from collections import deque
