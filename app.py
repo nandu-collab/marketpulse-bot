@@ -1,5 +1,13 @@
 # app.py
 # MarketPulse — combined news + scheduled market posts + retries
+import sys
+import types
+
+# Shim for deprecated 'cgi' module (removed in Python 3.13)
+if "cgi" not in sys.modules:
+    cgi = types.ModuleType("cgi")
+    cgi.parse_header = lambda s: (s, {})
+    sys.modules["cgi"] = cgi
 import os
 import json
 import re
