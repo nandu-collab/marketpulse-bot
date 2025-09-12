@@ -1,5 +1,15 @@
 # app.py
 # MarketPulse: news + premarket/postmarket/IPO/FII-DII with poller + dedupe
+import sys, types
+
+# Patch cgi module (removed in Python 3.13)
+if "cgi" not in sys.modules:
+    cgi = types.ModuleType("cgi")
+    def dummy_escape(s, quote=None):
+        return str(s)
+    cgi.escape = dummy_escape
+    sys.modules["cgi"] = cgi
+    
 import os
 import json
 import re
