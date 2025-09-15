@@ -11,7 +11,15 @@ import threading
 from datetime import datetime, timedelta, date
 from collections import deque
 from typing import List, Dict, Optional
+import sys
 
+# Temporary patch for feedparser on Python 3.13 (cgi removed)
+import feedparser
+if not hasattr(feedparser.encodings, "convert_to_utf8"):
+    def _noop(data, declared_encoding=None, is_html=False):
+        return data, declared_encoding
+    feedparser.encodings.convert_to_utf8 = _noop
+    
 import pytz
 import requests
 import feedparser
